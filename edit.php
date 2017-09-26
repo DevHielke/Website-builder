@@ -1,20 +1,19 @@
-<?php session_start(); ?>
+<?php
+// =================================================================
+// @Author: Hielke Annema
+// @Description: Page to edit & preview the website
+// @Date: 22-9-2017
+// =================================================================
+session_start();
+
+include_once("header.php");
+?>
 
 <?php
 if(!isset($_SESSION['valid'])) {
 	header('Location: login.php');
 }
 ?>
-<head>
-	<title>Wijzig</title>
-	<link rel="stylesheet" type="text/css" href="css/modal.css">
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -132,24 +131,44 @@ while($res = mysqli_fetch_array($result))
   <h1><?php echo $name;?></h1>
 </div>
  <?php echo $content; ?>
+ <?php echo $template; ?>
  <div class="thumbnail">
 <img src="<?php echo $url;?>"> </div>
-<p><?php echo $template;?></p>
-
   </div>
 </div>
 
 <?php 
-$myfile = fopen("newfile.html", "w") or die("Unable to open file!");
+$linksite = ("sites/$id.html");
+
+$myfile = fopen("sites/$id.html", "w") or die("Unable to open file!");
+fwrite($myfile, '<head>
+	<title>Wijzig</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>');
+fwrite($myfile, '<div class="jumbotron">
+  <div class="container">
+  	<div class="page-header"> <h1>');
 fwrite($myfile, $name);
-fwrite($myfile, $url);
-fwrite($myfile, $template);
+fwrite($myfile, '</h1>
+</div> </div> </div>');
 fwrite($myfile, $content);
+fwrite($myfile, ' <div class="thumbnail">
+<img src="');
+fwrite($myfile, $url);
+fwrite($myfile, '"> </div>
+<p><?php echo $template;?></p>');
+
 fclose($myfile);
 ?>
-<form method="get" action="newfile.html">
-   <button type="submit">Download!</button>
+<form method="get" action="<?php echo $linksite ?>">
+   <button type="submit">PREVIEW</button>
 </form>
+  <a href="<?php echo $linksite ?>" download> DOWNLOAD </a>
 </body>
 </html>
 

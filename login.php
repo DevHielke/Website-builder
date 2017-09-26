@@ -1,20 +1,16 @@
-<?php session_start(); ?>
+<?php
+// =================================================================
+// @Author: Hielke Annema
+// @Description: The login page
+// @Date: 22-9-2017
+// =================================================================
+session_start();
+
+include_once("header.php");
+?>
 <html>
-<head>
-	<title>Login</title>
-<!--<link rel="stylesheet" type="text/css" href="style.css"> -->
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
 
 <body>
-	
 	<?php
 	include("connection.php");
 
@@ -53,29 +49,16 @@
 		<br><br>
 		<center>
 <div id="header" class="panel panel-default" style="width:40%;">
-
-	
 		<form name="form1" method="post" class="form-group" action="">
-			
 				<p><font size="+2">Login</font></p>
-				 
-					
 					<input class="form-control" type="text" name="username" placeholder="Klantnummer">
 					<br>
-				
 					<input class="form-control" type="password" name="password" placeholder="Wachtwoord"><br>
 					<button type="submit" name="submit" value="Submit" class="btn btn-primary">Login</button> 
-					<!--<button type="submit" class="btn btn-primary" value="Submit">Login</button>-->
-				
-			
-		</form></center>
-</div>
-
+			</form></center>
+	</div>
 		<?php
 	}
 	?>
-
-
-
 </body>
 </html>

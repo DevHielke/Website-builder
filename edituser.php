@@ -1,21 +1,18 @@
-<?php session_start(); ?>
+<?php
+// =================================================================
+// @Author: Hielke Annema
+// @Description: Page to edit & preview the user
+// @Date: 22-9-2017
+// =================================================================
+session_start();
 
+include_once("header.php");
+?>
 <?php
 if(!isset($_SESSION['valid'])) {
 	header('Location: login.php');
 }
 ?>
-<head>
-	<title>Wijzig</title>
-	<link rel="stylesheet" type="text/css" href="css/modal.css">
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -93,17 +90,7 @@ while($res = mysqli_fetch_array($result))
 <head>	
 	<title>Edit Data</title>
 </head>
-
 <body>
-
-	
-	
-
-
-</head>
-<body>
-
-
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -135,13 +122,8 @@ while($res = mysqli_fetch_array($result))
 		</table>
 	</form>
   </div>
-
 </div>
-
 <script type="text/javascript" src="js/modal.js"></script>
-
-
-
 <div class="panel panel-default">
   <div class="panel-body">
    <?php ob_start(); ?>
@@ -150,9 +132,6 @@ while($res = mysqli_fetch_array($result))
 <p>Gebruikersnaam :<?php echo $username;?></p>
   </div>
 </div>
-
-
-
 </body>
 </html>
 
