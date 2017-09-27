@@ -57,6 +57,18 @@ while ($res = mysqli_fetch_array($result)) {
 	</table>	
 	
 
+<?php
+  if(isset($_SESSION['valid'])) {     
+    include("connection.php");          
+   ?>
+  
+  <?php 
+  } else {
+    header("Location:login.php");
+    echo "You must be logged in to view this page.<br/><br/>";
+  }
+  ?>
+
 
 <?php
 include("connection.php");

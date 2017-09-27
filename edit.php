@@ -128,7 +128,7 @@ while($res = mysqli_fetch_array($result))
 <div class="jumbotron">
   <div class="container">
   	<div class="page-header">
-  <h1><?php echo $name;?></h1>
+  <h1 style="color: <?php echo $template; ?> "><?php echo $name;?></h1>
 </div>
  <?php echo $content; ?>
  <?php echo $template; ?>
