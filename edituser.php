@@ -7,15 +7,13 @@
 session_start();
 
 include_once("header.php");
-?>
-<?php
+
 if(!isset($_SESSION['valid'])) {
 	header('Location: login.php');
 }
 ?>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>

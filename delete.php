@@ -4,18 +4,13 @@
 // @Description: If a site gets deleted it goes through this
 // @Date: 22-9-2017
 // =================================================================
-?>
-<?php
-session_start();
-?>
 
-<?php
+// Start session, and check if user is logged in
+session_start();
 if (!isset($_SESSION['valid'])) {
     header('Location: login.php');
 }
-?>
 
-<?php
 //including the database connection file
 include("connection.php");
 

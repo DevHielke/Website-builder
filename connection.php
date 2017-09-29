@@ -4,9 +4,6 @@
 // @Description: File to connect with our database 
 // @Date: 12-9-2017
 // =================================================================
-?>
-
-<?php
 
 $databaseHost     = 'localhost';
 $databaseName     = 'test2';

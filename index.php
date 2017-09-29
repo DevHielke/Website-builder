@@ -5,9 +5,7 @@
 // @Date: 22-9-2017
 // =================================================================
 session_start();
-?>
- 
-<?php
+
 // including the database connection file
 include_once("connection.php");
 include_once("header.php");
@@ -71,7 +69,6 @@ if(isset($_POST['Submit'])) {
      <a href="administrator.php"> Administrator <span class="srs-only"> <?php
   }
 else {
-	echo "";
 }
   ?>  
     </span> </a> </li>
@@ -98,7 +95,6 @@ else {
 		echo "You must be logged in to view this page.<br/><br/>";
 	}
 	?>
-
 	<table class="table table-hover">
 		<tr>
 			<td>Titel</td>

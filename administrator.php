@@ -2,7 +2,7 @@
 // =================================================================
 // @Author: Hielke Annema
 // @Description: Administrator page, only admins have acces. 
-// @Date: 22-9-2017
+// @Date: 29-9-2017
 // =================================================================
 ?>
 
@@ -14,7 +14,6 @@ session_start();
 // including the database connection file
 include_once("connection.php");
 include_once("header.php");
-
 $result = mysqli_query($mysqli, "SELECT * FROM login");
 
 ?>
@@ -46,6 +45,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM login");
 			<td>Acties</td>
 		</tr>
 		<?php
+    // Generate the user table filled with all users
 while ($res = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $res['name'] . "</td>";
@@ -58,12 +58,11 @@ while ($res = mysqli_fetch_array($result)) {
 	
 
 <?php
+// Make sure no one can get on this page through the link
   if(isset($_SESSION['valid'])) {     
     include("connection.php");          
-   ?>
-  
-  <?php 
-  } else {
+  }
+   else {
     header("Location:login.php");
     echo "You must be logged in to view this page.<br/><br/>";
   }
@@ -71,19 +70,20 @@ while ($res = mysqli_fetch_array($result)) {
 
 
 <?php
-include("connection.php");
+// Create a user
 
 if (isset($_POST['submit'])) {
     $name  = $_POST['name'];
     $email = $_POST['email'];
     $user  = $_POST['username'];
     $pass  = $_POST['password'];
-    
+    // Check if all fields are filled in
     if ($user == "" || $pass == "" || $name == "" || $email == "") {
         echo "Vul alle velden in.";
     } else {
+      // If all fields are filled in, insert the data into the database
         mysqli_query($mysqli, "INSERT INTO login(name, email, username, password) VALUES('$name', '$email', '$user', md5('$pass'))") or die("Could not execute the insert query.");
-        
+        // Then redirect to the same page to refresh it and thus see the new added user
         header('Location: administrator.php');
     }
 } else {

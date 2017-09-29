@@ -2,14 +2,13 @@
 // =================================================================
 // @Author: Hielke Annema
 // @Description: Page to edit & preview the website
-// @Date: 22-9-2017
+// @Date: 29-9-2017
 // =================================================================
 session_start();
 
 include_once("header.php");
-?>
 
-<?php
+// Make sure session is valid
 if(!isset($_SESSION['valid'])) {
 	header('Location: login.php');
 }
@@ -44,7 +43,6 @@ include_once("connection.php");
 if(isset($_POST['update']))
 {	
 	$id = $_POST['id'];
-	
 	$name = $_POST['name'];
 	$url = $_POST['url'];
 	$content = $_POST['content'];
@@ -56,22 +54,19 @@ if(isset($_POST['update']))
 		if(empty($name)) {
 			echo "<font color='red'> Veld is leeg.</font><br/>";
 		}
-		
 		if(empty($url)) {
 			echo "<font color='red'> Veld is leeg.</font><br/>";
 		}
 		if(empty($content)) {
 			echo "<font color='red'> Veld is leeg.</font><br/>";
 		}
-		
 		if(empty($template)) {
 			echo "<font color='red'> Veld is leeg.</font><br/>";
 		}		
 	} else {	
 		//updating the table
 		$result = mysqli_query($mysqli, "UPDATE websites SET name='$name', url='$url',  content='$content', template='$template' WHERE id=$id");
-		
-		//redirectig to the display page. In our case, it is view.php
+	   // Redirect to the same page, so the page refreshes and the edit is shown.
 		header("Location: edit.php?id=$id");
 	}
 }
@@ -138,6 +133,7 @@ while($res = mysqli_fetch_array($result))
 </div>
 
 <?php 
+// The file path where it is getting saved. They are all unique due their ID
 $linksite = ("sites/$id.html");
 
 $myfile = fopen("sites/$id.html", "w") or die("Unable to open file!");
