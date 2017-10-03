@@ -2,7 +2,7 @@
 // =================================================================
 // @Author: Hielke Annema
 // @Description: This is the main page, lists user's sites
-// @Date: 22-9-2017
+// @Date: 2-10-2017
 // =================================================================
 session_start();
 
@@ -82,14 +82,15 @@ else {
 	<div id="header">
 	</div>
 	<?php
+	// Make sure user is logged in
 	if(isset($_SESSION['valid'])) {			
 		include("connection.php");					
-		$result = mysqli_query($mysqli, "SELECT * FROM login");
 		$templateresult = mysqli_query($mysqli, "SELECT * FROM templates");
 		$result1 = mysqli_query($mysqli, "SELECT * FROM websites WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
 		?>Welkom <?php echo $_SESSION['name'] ?>
 	
 	<?php	
+	// If nog logged in user gets redirected to login.php
 	} else {
 		header("Location:login.php");
 		echo "You must be logged in to view this page.<br/><br/>";
@@ -103,6 +104,7 @@ else {
 			<td>Acties</td>
 		</tr>
 		<?php
+		// Table with the websites
 		while($res = mysqli_fetch_array($result1)) {		
 			echo "<tr>";
 			echo "<td>".$res['name']."</td>";

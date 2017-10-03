@@ -14,6 +14,7 @@ if(!isset($_SESSION['valid'])) {
 }
 ?>
 
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,6 +48,7 @@ if(isset($_POST['update']))
 	$url = $_POST['url'];
 	$content = $_POST['content'];
 	$template = $_POST['template'];	
+  $loginid = $_POST['login_id'];
 	
 	// checking empty fields
 	if(empty($name) || empty($url) || empty($template)) {
@@ -85,6 +87,7 @@ while($res = mysqli_fetch_array($result))
 	$url = $res['url'];
 	$template = $res['template'];
 	$content = $res['content'];
+  $loginid = $res['login_id'];
 }
 ?>
 <html>
@@ -92,6 +95,18 @@ while($res = mysqli_fetch_array($result))
 	<title>Edit Data</title>
 </head>
 <body>
+
+<?php 
+// If website login_id is equal to user id then user can stay on this page.
+if ($_SESSION['id'] == $loginid) {
+  echo "";
+}
+else {
+    header('Location: login.php');
+}
+?>
+
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -162,12 +177,13 @@ fwrite($myfile, '"> </div>
 fclose($myfile);
 ?>
 <form method="get" action="<?php echo $linksite ?>">
-   <button type="submit">PREVIEW</button>
+   <button class="class btn-primary" type="submit"> Preview </button>
 </form>
-  <a href="<?php echo $linksite ?>" download> DOWNLOAD </a>
+
+
+<form method="get" action="<?php echo $linksite ?>">
+<button class="class btn-primary" download> Download </a></button>
+</form>
 </body>
 </html>
-
-
-
 
