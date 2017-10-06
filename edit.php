@@ -4,14 +4,9 @@
 // @Description: Page to edit & preview the website
 // @Date: 29-9-2017
 // =================================================================
-session_start();
 
 include_once("header.php");
 
-// Make sure session is valid
-if(!isset($_SESSION['valid'])) {
-	header('Location: login.php');
-}
 ?>
 
 
@@ -96,17 +91,6 @@ while($res = mysqli_fetch_array($result))
 </head>
 <body>
 
-<?php 
-// If website login_id is equal to user id then user can stay on this page.
-if ($_SESSION['id'] == $loginid) {
-  echo "";
-}
-else {
-    header('Location: login.php');
-}
-?>
-
-
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -134,56 +118,23 @@ else {
   </div>
 </div>
 <script type="text/javascript" src="js/modal.js"></script>
-  <?php ob_start(); ?>
-<div class="jumbotron">
-  <div class="container">
-  	<div class="page-header">
-  <h1 style="color: <?php echo $template; ?> "><?php echo $name;?></h1>
-</div>
- <?php echo $content; ?>
- <?php echo $template; ?>
- <div class="thumbnail">
-<img src="<?php echo $url;?>"> </div>
-  </div>
-</div>
 
-<?php 
-// The file path where it is getting saved. They are all unique due their ID
-$linksite = ("sites/$id.html");
+<?php // template blue
+ if ($template == "blue") { 
+include_once("templates/bluetemplateinclude.php");
+ } 
 
-$myfile = fopen("sites/$id.html", "w") or die("Unable to open file!");
-fwrite($myfile, '<head>
-	<title>Wijzig</title>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>');
-fwrite($myfile, '<div class="jumbotron">
-  <div class="container">
-  	<div class="page-header"> <h1>');
-fwrite($myfile, $name);
-fwrite($myfile, '</h1>
-</div> </div> </div>');
-fwrite($myfile, $content);
-fwrite($myfile, ' <div class="thumbnail">
-<img src="');
-fwrite($myfile, $url);
-fwrite($myfile, '"> </div>
-<p><?php echo $template;?></p>');
+ // template Green
+ if ($template == "green") { 
+include_once("templates/greentemplateinclude.php");
+ } 
 
-fclose($myfile);
-?>
-<form method="get" action="<?php echo $linksite ?>">
-   <button class="class btn-primary" type="submit"> Preview </button>
-</form>
+if ($template == "red") {
+  include_once("templates/redtemplateinclude.php");
+}
 
+ ?>
 
-<form method="get" action="<?php echo $linksite ?>">
-<button class="class btn-primary" download> Download </a></button>
-</form>
 </body>
 </html>
 

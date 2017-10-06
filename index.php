@@ -4,7 +4,6 @@
 // @Description: This is the main page, lists user's sites
 // @Date: 2-10-2017
 // =================================================================
-session_start();
 
 // including the database connection file
 include_once("connection.php");

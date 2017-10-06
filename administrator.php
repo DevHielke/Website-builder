@@ -4,13 +4,8 @@
 // @Description: Administrator page, only admins have acces. 
 // @Date: 29-9-2017
 // =================================================================
-?>
 
-<?php
-session_start();
-?>
- 
-<?php
+
 // including the database connection file
 include_once("connection.php");
 include_once("header.php");

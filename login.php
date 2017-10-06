@@ -4,16 +4,12 @@
 // @Description: The login page
 // @Date: 29-9-2017
 // =================================================================
-session_start();
-
 include_once("header.php");
 ?>
 <html>
-
 <body>
 	<?php
 	include("connection.php");
-
 
 	if(isset($_POST['submit'])) {
 		$user = mysqli_real_escape_string($mysqli, $_POST['username']);

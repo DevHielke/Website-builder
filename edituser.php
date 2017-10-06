@@ -4,7 +4,7 @@
 // @Description: Page to edit & preview the user
 // @Date: 22-9-2017
 // =================================================================
-session_start();
+
 
 include_once("header.php");
 
